@@ -20,17 +20,11 @@ sudo systemctl enable docker
 sudo systemctl status docker
 
 #Install kubectl
-sudo apt-get update
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
-sudo apt-get install -y ca-certificates curl apt-transport-https
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
-
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
-sudo apt-get update
-
-sudo apt-get install -y kubectl
+kubectl version --client
 
 #Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
