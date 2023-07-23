@@ -1,0 +1,40 @@
+#Follow this commands to install docker and minikube, installation might differ base on OS
+
+#Update your OS
+sudo apt-get update
+
+#Install docker
+sudo apt-get install -y docker.io
+
+#Add user to docker group
+sudo usermod -aG docker $USER
+
+
+#Start and enable docker
+sudo systemctl start docker
+
+sudo systemctl enable docker
+
+sudo systemctl status docker
+
+#Install kubectl
+sudo apt-get update
+
+sudo apt-get install -y ca-certificates curl apt-transport-https
+
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+
+sudo apt-get install -y kubectl
+
+#Install minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+#Start minikube
+minikube start
+
